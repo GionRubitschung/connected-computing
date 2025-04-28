@@ -22,6 +22,7 @@ provider "aws" {
 # S3 bucket for Lambda results
 resource "aws_s3_bucket" "result_bucket" {
   bucket = "cc-bfh-student16-result"
+  force_destroy = true
 
   tags = {
     Owner   = "student16"
@@ -102,7 +103,7 @@ resource "aws_lambda_function" "s3_writer_lambda" {
   function_name = "cc-bfh-student16-lambda"
   role          = aws_iam_role.lambda_role.arn
   handler       = "lambda.handler"
-  runtime       = "python3.9"
+  runtime       = "python3.12"
 
   tags = {
     Owner   = "student16"
