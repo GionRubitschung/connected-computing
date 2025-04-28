@@ -6,7 +6,7 @@ This repository contains Terraform configurations to set up an AWS Lambda functi
 
 - AWS CLI configured with `tf-student16` profile
 - Terraform installed
-- Python 3.9+
+- Python 3.12
 
 ## Infrastructure Components
 
