@@ -92,7 +92,7 @@ aws lambda invoke \
   --payload '{"filename":"example.txt","filetext":"This is a test"}' \
   --cli-binary-format raw-in-base64-out \
   --profile tf-student16 \
-  response.json
+  ./output/response.json
 ```
 
 Verify the output in the S3 bucket:
@@ -104,8 +104,8 @@ aws s3 ls s3://cc-bfh-student16-result --profile tf-student16
 To download and view the created file:
 
 ```bash
-aws s3 cp s3://cc-bfh-student16-result/example.txt . --profile tf-student16
-cat example.txt
+aws s3 cp s3://cc-bfh-student16-result/example.txt ./output --profile tf-student16
+cat ./output/example.txt
 ```
 
 ## Lambda Function Details

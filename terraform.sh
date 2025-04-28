@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Create output directory if it doesn't exist
+mkdir -p output
+
 echo "Checking if S3 bucket for Terraform state exists..."
 if aws s3api head-bucket --bucket cc-bfh-student16-tf-state --profile tf-student16 2>/dev/null; then
   echo "Bucket already exists, skipping creation"
@@ -36,15 +39,15 @@ aws lambda invoke \
   --payload '{"filename":"example.txt","filetext":"This is a test"}' \
   --cli-binary-format raw-in-base64-out \
   --profile tf-student16 \
-  response.json
+  output/response.json
 
 echo "Listing contents of result S3 bucket..."
 aws s3 ls s3://cc-bfh-student16-result --profile tf-student16
 
 echo "Downloading created file from S3..."
-aws s3 cp s3://cc-bfh-student16-result/example.txt . --profile tf-student16
+aws s3 cp s3://cc-bfh-student16-result/example.txt output/ --profile tf-student16
 echo "Content of the created file:"
-cat example.txt
+cat output/example.txt
 
 echo "Destroying Terraform infrastructure..."
 terraform destroy
