@@ -58,6 +58,30 @@ terraform apply
 terraform destroy
 ```
 
+## Automation Script
+
+For convenience, an automation script `terraform.sh` is provided that handles the entire workflow from setup to testing:
+
+```bash
+# Make the script executable
+chmod +x terraform.sh
+
+./terraform.sh
+```
+
+### What the Script Does
+
+The script automates the following tasks:
+1. Checks if the S3 state bucket exists and creates it if needed
+2. Enables versioning on the bucket if not already enabled
+3. Initializes Terraform with the correct backend configuration
+4. Plans and applies the Terraform configuration
+5. Tests the Lambda function with a sample payload
+6. Lists and retrieves the created file from the result bucket
+7. Optionally destroys the infrastructure
+
+Each step displays informative messages to show what's happening.
+
 ## Testing the Lambda Function
 
 Invoke the Lambda function with a test payload:
