@@ -1,0 +1,1 @@
+{"statusCode": 200, "body": "{\"message\": \"File successfully written to S3\", \"bucket\": \"cc-bfh-student16-result\", \"filename\": \"example.txt\"}"}
